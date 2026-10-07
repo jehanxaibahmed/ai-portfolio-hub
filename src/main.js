@@ -53,7 +53,7 @@ extractBtn.addEventListener('click', async () => {
         'X-API-Key': 'secret-key'
       },
       body: JSON.stringify({ text })
-    }).catch(err => { console.error(err); return null; }); // Ignore fetch error to use mock
+    }).catch(err => { console.error(err); return null; });
     
     let data;
     if (response && response.ok) {
