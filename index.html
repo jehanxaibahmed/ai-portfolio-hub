@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Portfolio Hub</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <!-- Background Elements -->
+    <div class="bg-shape bg-shape-1"></div>
+    <div class="bg-shape bg-shape-2"></div>
+    
+    <div class="container">
+      <header>
+        <div class="logo">
+          <h1>AI Portfolio Hub</h1>
+          <span class="badge">v1.0</span>
+        </div>
+        <p class="subtitle">Unified AI Services Portal</p>
+      </header>
+
+      <div class="glass-panel main-panel">
+        <nav class="tabs">
+          <button class="tab-btn active" data-tab="tab-order-extractor">
+            <span class="tab-icon">📄</span> Order Extractor
+          </button>
+          <button class="tab-btn" data-tab="tab-voice-order">
+            <span class="tab-icon">🎙️</span> Voice to Order
+          </button>
+          <button class="tab-btn" data-tab="tab-semantic-matcher">
+            <span class="tab-icon">🔍</span> Semantic Matcher
+          </button>
+        </nav>
+
+        <div class="tab-content-container">
+          <!-- Tab 1: Order Extractor -->
+          <div id="tab-order-extractor" class="tab-pane active">
+            <div class="header-content">
+              <h2>Invoice Order Extractor</h2>
+              <p>Paste your raw invoice text below. The AI will extract structured line items and totals.</p>
+            </div>
+            
+            <div class="input-group">
+              <textarea id="invoice-text" placeholder="Paste invoice text here..."></textarea>
+            </div>
+            
+            <button id="btn-extract" class="btn primary-btn">
+              <span>Extract Data</span>
+              <div class="btn-glow"></div>
+            </button>
+            
+            <div id="extractor-result" class="result-area hidden">
+              <h3>Extracted Output</h3>
+              <div class="table-container">
+                <table id="extractor-table">
+                  <thead>
+                    <tr>
+                      <th>Item</th>
+                      <th>Quantity</th>
+                      <th>Price</th>
+                      <th>Total</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- Populated by JS -->
+                  </tbody>
+                </table>
+              </div>
+              <div class="raw-json-container">
+                <details>
+                  <summary>View Raw JSON</summary>
+                  <pre id="extractor-json"></pre>
+                </details>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tab 2: Voice to Order -->
+          <div id="tab-voice-order" class="tab-pane">
+            <div class="header-content">
+              <h2>Voice to Order</h2>
+              <p>Upload an audio file of a customer's spoken order to transcribe and structure it.</p>
+            </div>
+            
+            <div class="file-upload-wrapper">
+              <input type="file" id="voice-file" accept="audio/*" class="file-input" />
+              <div class="file-upload-ui">
+                <div class="upload-icon">🎧</div>
+                <p>Click or drag audio file here</p>
+                <span class="file-name" id="voice-file-name">No file selected</span>
+              </div>
+            </div>
+            
+            <button id="btn-voice" class="btn primary-btn">
+              <span>Process Audio</span>
+              <div class="btn-glow"></div>
+            </button>
+            
+            <div id="voice-result" class="result-area hidden">
+              <h3>Transcription & Order</h3>
+              <div class="transcription-box">
+                <h4>Transcript</h4>
+                <p id="voice-transcript"></p>
+              </div>
+              <pre id="voice-json"></pre>
+            </div>
+          </div>
+
+          <!-- Tab 3: Semantic Matcher -->
+          <div id="tab-semantic-matcher" class="tab-pane">
+            <div class="header-content">
+              <h2>Semantic Matcher</h2>
+              <p>Search via natural language queries to find closely related inventory items.</p>
+            </div>
+            
+            <div class="search-wrapper">
+              <input type="text" id="semantic-search" placeholder="e.g. 'Sturdy oak dining table'..." autocomplete="off"/>
+              <button id="btn-search" class="btn icon-btn">
+                <span class="search-icon">🔍</span>
+              </button>
+            </div>
+            
+            <div id="search-results" class="search-results-container hidden">
+              <!-- Populated by JS -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
