@@ -1,6 +1,6 @@
-# Enterprise Sovereign AI & LLMOps Platform
+# AI Portfolio Hub
 
-A production-grade, multi-service enterprise platform for B2B supply chain operations, order processing, and LLMOps telemetry. Designed to operate completely offline without external cloud dependencies by leveraging local LLMs, embedded speech-to-text, and vector databases.
+A portfolio project that runs my six AI services together as one local stack: order extraction from emails, voice-to-order, semantic product matching, an MCP server for ERP data, an evaluation harness and a live AI ops dashboard. Everything runs offline with Docker Compose, using local LLMs (Ollama), local speech-to-text and PostgreSQL with pgvector. All data is synthetic.
 
 ![Architecture Demo](docs/demo.gif)
 
