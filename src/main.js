@@ -69,28 +69,30 @@ extractBtn.addEventListener('click', async () => {
     const tbody = document.querySelector('#extractor-table tbody');
     tbody.innerHTML = '';
     
-    // Map order lines to items for display
-    const items = data.order?.lines || [];
-    let grandTotal = 0;
+    // Set order metadata
+    const order = data.order || {};
+    const metaCust = document.getElementById('meta-customer');
+    const metaDel = document.getElementById('meta-delivery');
+    if (metaCust) metaCust.innerText = order.customer_name || 'Not specified';
+    if (metaDel) metaDel.innerText = order.requested_delivery_date || 'Not specified';
+
+    // Map order lines for display
+    const items = order.lines || [];
     
-    items.forEach(item => {
-      tbody.innerHTML += `
-        <tr>
-          <td>${item.product_description || item.name || 'Unknown'}</td>
-          <td>${item.quantity || 1}</td>
-          <td style="color: #64748b;">N/A</td>
-          <td style="color: #64748b;">N/A</td>
-        </tr>
-      `;
-    });
-    
-    // Add total row
-    tbody.innerHTML += `
-      <tr style="background: rgba(255,255,255,0.05); font-weight: bold;">
-        <td colspan="3">Grand Total</td>
-        <td style="color: #64748b;">N/A</td>
-      </tr>
-    `;
+    if (items.length === 0) {
+      tbody.innerHTML = `<tr><td colspan="4" style="text-align: center; color: #64748b;">No order lines extracted</td></tr>`;
+    } else {
+      items.forEach(item => {
+        tbody.innerHTML += `
+          <tr>
+            <td><strong>${item.product_description || 'Unknown'}</strong></td>
+            <td>${item.quantity ?? '—'}</td>
+            <td>${item.unit || '—'}</td>
+            <td style="color: #94a3b8;">${item.notes || '—'}</td>
+          </tr>
+        `;
+      });
+    }
     
     document.getElementById('extractor-json').innerText = JSON.stringify(data, null, 2);
     resultArea.classList.remove('hidden');

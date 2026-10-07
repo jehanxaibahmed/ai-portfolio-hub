@@ -56,14 +56,18 @@
             
             <div id="extractor-result" class="result-area hidden">
               <h3>Extracted Output</h3>
+              <div id="order-meta-info" style="display: flex; gap: 1.5rem; margin-bottom: 1rem; color: #94a3b8; font-size: 0.9rem;">
+                <div><strong>Customer:</strong> <span id="meta-customer" style="color: #f8fafc;">—</span></div>
+                <div><strong>Delivery Date:</strong> <span id="meta-delivery" style="color: #38bdf8;">—</span></div>
+              </div>
               <div class="table-container">
                 <table id="extractor-table">
                   <thead>
                     <tr>
-                      <th>Item</th>
+                      <th>Item Description</th>
                       <th>Quantity</th>
-                      <th>Price</th>
-                      <th>Total</th>
+                      <th>Unit</th>
+                      <th>Notes</th>
                     </tr>
                   </thead>
                   <tbody>
