@@ -59,7 +59,8 @@ extractBtn.addEventListener('click', async () => {
     if (response && response.ok) {
       data = await response.json();
     } else {
-      alert("Failed to process text via API.");
+      resultArea.innerHTML = `<div class="error" style="color: #ef4444; padding: 1rem; border: 1px solid #ef4444; border-radius: 8px; margin-top: 1rem;">Failed to process text via API. Please ensure the backend is running.</div>`;
+      resultArea.classList.remove('hidden');
       setLoading(extractBtn, false);
       return;
     }
@@ -156,7 +157,8 @@ voiceBtn.addEventListener('click', async () => {
         }
       }
     } else {
-      alert("Failed to process audio via API.");
+      resultArea.innerHTML = `<div class="error" style="color: #ef4444; padding: 1rem; border: 1px solid #ef4444; border-radius: 8px; margin-top: 1rem;">Failed to process audio via API. Please ensure the backend is running.</div>`;
+      resultArea.classList.remove('hidden');
       setLoading(voiceBtn, false);
       return;
     }
