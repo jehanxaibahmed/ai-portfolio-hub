@@ -59,17 +59,9 @@ extractBtn.addEventListener('click', async () => {
     if (response && response.ok) {
       data = await response.json();
     } else {
-      // Mock Data if API is down
-      await new Promise(r => setTimeout(r, 1000));
-      data = {
-        invoice_id: "INV-9921",
-        items: [
-          { name: "Wireless Keyboard", quantity: 2, price: 45.99, total: 91.98 },
-          { name: "Ergonomic Mouse", quantity: 1, price: 29.99, total: 29.99 },
-          { name: "USB-C Hub", quantity: 3, price: 15.50, total: 46.50 }
-        ],
-        grand_total: 168.47
-      };
+      alert("Failed to process text via API.");
+      setLoading(extractBtn, false);
+      return;
     }
     
     // Render
@@ -81,17 +73,12 @@ extractBtn.addEventListener('click', async () => {
     let grandTotal = 0;
     
     items.forEach(item => {
-      // LLM doesn't extract price, so we mock it for the demo
-      const price = 5.00; 
-      const total = item.quantity * price;
-      grandTotal += total;
-      
       tbody.innerHTML += `
         <tr>
           <td>${item.product_description || item.name || 'Unknown'}</td>
-          <td>${item.quantity}</td>
-          <td>$${price.toFixed(2)}</td>
-          <td>$${total.toFixed(2)}</td>
+          <td>${item.quantity || 1}</td>
+          <td style="color: #64748b;">N/A</td>
+          <td style="color: #64748b;">N/A</td>
         </tr>
       `;
     });
@@ -100,7 +87,7 @@ extractBtn.addEventListener('click', async () => {
     tbody.innerHTML += `
       <tr style="background: rgba(255,255,255,0.05); font-weight: bold;">
         <td colspan="3">Grand Total</td>
-        <td>$${grandTotal.toFixed(2)}</td>
+        <td style="color: #64748b;">N/A</td>
       </tr>
     `;
     
@@ -169,18 +156,9 @@ voiceBtn.addEventListener('click', async () => {
         }
       }
     } else {
-      // Mock Data
-      await new Promise(r => setTimeout(r, 1500));
-      data = {
-        transcript: "Yeah, hi. I'd like to order two large pepperoni pizzas and a two-liter of diet coke.",
-        order_details: {
-          items: [
-            { item: "Large Pepperoni Pizza", quantity: 2 },
-            { item: "Diet Coke (2 Liter)", quantity: 1 }
-          ],
-          confidence: 0.96
-        }
-      };
+      alert("Failed to process audio via API.");
+      setLoading(voiceBtn, false);
+      return;
     }
     
     document.getElementById('voice-transcript').innerText = `"${data.transcript}"`;
